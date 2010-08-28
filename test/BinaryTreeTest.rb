@@ -42,12 +42,7 @@ class BinaryTreeTest < Test::Unit::TestCase
 	end
 
   def test_reset_current_node
-    tree = BinaryTree.new
-    tree.add 'a'
-    tree.add 'c', :right
-      
-    tree.reset_current_node
-    tree.add 'b', :left
+    tree = create_abc_tree
 
     assert_equal 3, tree.size
     assert_equal 'a', tree.root.value
@@ -55,5 +50,16 @@ class BinaryTreeTest < Test::Unit::TestCase
     assert_equal 'c', tree.root.right_child.value
     assert tree.root.left_child.leaf?
     assert tree.root.right_child.leaf?    
+  end
+
+  def create_abc_tree
+    tree = BinaryTree.new
+    tree.add 'a'
+    tree.add 'c', :right
+      
+    tree.reset_current_node
+    tree.add 'b', :left
+
+    tree
   end
 end

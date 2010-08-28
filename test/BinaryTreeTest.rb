@@ -52,6 +52,51 @@ class BinaryTreeTest < Test::Unit::TestCase
     assert tree.root.right_child.leaf?    
   end
 
+  def test_go_left
+    tree = create_abc_tree
+    tree.reset_current_node
+    
+    assert tree.current_node.root?
+
+    tree.go_left
+
+    assert tree.current_node.leaf?
+    assert_equal 'b', tree.current_node.value
+  end
+
+  def test_go_right
+    tree = create_abc_tree
+    tree.reset_current_node
+    
+    assert tree.current_node.root?
+
+    tree.go_right
+
+    assert tree.current_node.leaf?
+    assert_equal 'c', tree.current_node.value
+  end
+
+  def test_go_back_one_level
+    tree = create_abc_tree
+    tree.add 'd', :left
+
+    assert_equal 'd', tree.current_node.value
+    assert_equal 4, tree.size 
+
+    tree.go_back_one_level
+
+    assert_equal 'b', tree.current_node.value
+  end
+
+  def test_should_go_back_to_root_when_has_no_parent
+    tree = create_abc_tree
+    tree.go_back_one_level
+    tree.go_back_one_level
+
+    assert_equal tree.root, tree.current_node
+  
+  end
+
   def create_abc_tree
     tree = BinaryTree.new
     tree.add 'a'

@@ -94,7 +94,6 @@ class BinaryTreeTest < Test::Unit::TestCase
     tree.go_back_one_level
 
     assert_equal tree.root, tree.current_node
-  
   end
 
   def create_abc_tree

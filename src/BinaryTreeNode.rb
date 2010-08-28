@@ -1,7 +1,7 @@
 class BinaryTreeNode
 
-  attr_reader :value, :left_child, :right_child
-  attr_writer :left_child, :right_child
+  attr_reader :value, :left_child, :right_child, :parent
+  attr_writer :left_child, :right_child, :parent
 
 	def initialize(value)
 		@value = value	

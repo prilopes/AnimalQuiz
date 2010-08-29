@@ -36,13 +36,25 @@ class BinaryTree
     else
       new_node = BinaryTreeNode.new value
       new_node.parent = @current_node
-      if side == :left
-        @current_node.left_child = new_node
-      else
-        @current_node.right_child = new_node
-      end
+      @current_node.set_child new_node, side
       @current_node = new_node
       @size += 1
     end
+  end
+
+  def add_as_parent(new_value, side)
+    new_node = BinaryTreeNode.new new_value
+    new_node.parent = @current_node.parent
+    if @current_node.root?
+      @root = new_node
+    else
+      side = @current_node == @current_node.parent.left_child ? :left : :right
+      @current_node.parent.set_child new_node, side
+    end
+
+    @current_node.parent = new_node
+    new_node.set_child @current_node, side
+    @current_node = new_node
+    @size += 1
   end
 end

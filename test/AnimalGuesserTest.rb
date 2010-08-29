@@ -13,17 +13,54 @@ class AnimalGuesserTest < Test::Unit::TestCase
 
   def test_guessed_wrong_animal
     guesser = AnimalGuesser.new
+    guesser.start_guessing
     
-    String msg = guesser.next_question(:no)
+    msg = guesser.next_question(:no)
 
     assert_equal 'You win', msg
   end
 
   def test_guessed_right_animal
     guesser = AnimalGuesser.new
-    
-    String msg = guesser.next_question(:yes)
+    guesser.start_guessing
 
+    msg = guesser.next_question(:yes)
+
+    assert_equal 'I win', msg
+  end
+
+  def test_add_new_animal_and_question
+    guesser = AnimalGuesser.new
+
+    msg = guesser.start_guessing
+    assert_equal 'dog', msg
+    
+    msg = guesser.next_question(:no)
+    assert_equal 'You win', msg
+
+    guesser.add_animal 'lion', 'is feline?', :yes
+    
+    msg = guesser.start_guessing
+    assert_equal 'is feline?', msg
+
+    msg = guesser.next_question(:yes)
+    assert_equal 'lion', msg
+
+    msg = guesser.next_question(:no)
+    assert_equal 'You win', msg
+
+    guesser.add_animal 'cat', 'has a mane?', :no
+
+    msg = guesser.start_guessing
+    assert_equal 'is feline?', msg
+    
+    msg = guesser.next_question(:yes)
+    assert_equal 'has a mane?', msg
+
+    msg = guesser.next_question(:no)
+    assert_equal 'cat', msg
+
+    msg = guesser.next_question(:yes)
     assert_equal 'I win', msg
   end
 end

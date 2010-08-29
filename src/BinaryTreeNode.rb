@@ -1,7 +1,7 @@
 class BinaryTreeNode
 
   attr_reader :value, :left_child, :right_child, :parent
-  attr_writer :left_child, :right_child, :parent
+  attr_writer :parent
 
 	def initialize(value)
 		@value = value	
@@ -17,4 +17,12 @@ class BinaryTreeNode
 	def root?
 		@parent.nil?
 	end
+
+  def set_child(child, side)
+    if side == :left
+      @left_child = child
+    else
+      @right_child = child
+    end
+  end
 end

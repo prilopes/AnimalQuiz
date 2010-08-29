@@ -96,6 +96,32 @@ class BinaryTreeTest < Test::Unit::TestCase
     assert_equal tree.root, tree.current_node
   end
 
+  def test_add_as_parent_to_the_left
+    tree = BinaryTree.new
+    tree.add 'a'
+
+    tree.add_as_parent 'z', :left
+
+    assert_equal 2, tree.size
+    assert_equal 'z', tree.current_node.value
+    assert_equal 'z', tree.root.value
+    assert_equal 'a', tree.root.left_child.value
+    assert_nil tree.root.right_child
+  end
+
+  def test_add_as_parent_to_the_right
+    tree = BinaryTree.new
+    tree.add 'a'
+
+    tree.add_as_parent 'z', :right
+
+    assert_equal 2, tree.size
+    assert_equal 'z', tree.current_node.value
+    assert_equal 'z', tree.root.value
+    assert_equal 'a', tree.root.right_child.value
+    assert_nil tree.root.left_child
+  end
+
   def create_abc_tree
     tree = BinaryTree.new
     tree.add 'a'

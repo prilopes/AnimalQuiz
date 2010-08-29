@@ -5,6 +5,9 @@ class BinaryTreeNode
 
 	def initialize(value)
 		@value = value	
+    @left_child = nil
+    @right_child = nil
+    @parent = nil
 	end
 
 	def leaf?

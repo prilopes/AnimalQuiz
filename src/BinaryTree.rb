@@ -2,6 +2,10 @@ class BinaryTree
 
   attr_reader :size, :root, :current_node
 
+  def initialize
+    @root = nil
+  end
+
 	def empty?
 		@root.nil?
 	end

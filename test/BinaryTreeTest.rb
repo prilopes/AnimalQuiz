@@ -1,5 +1,5 @@
-require "src/BinaryTree"
-require "src/BinaryTreeNode"
+require_relative "../src/BinaryTree"
+require_relative "../src/BinaryTreeNode"
 require "test/unit"
 
 class BinaryTreeTest < Test::Unit::TestCase

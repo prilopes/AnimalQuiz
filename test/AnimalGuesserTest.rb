@@ -1,6 +1,6 @@
-require "src/BinaryTree"
-require "src/BinaryTreeNode"
-require "src/AnimalGuesser"
+require_relative "../src/BinaryTree"
+require_relative "../src/BinaryTreeNode"
+require_relative "../src/AnimalGuesser"
 require "test/unit"
 
 class AnimalGuesserTest < Test::Unit::TestCase
